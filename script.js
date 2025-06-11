@@ -1,3 +1,19 @@
+
+// Add click animation
+document.querySelectorAll('.toggle-option').forEach(option => {
+    option.addEventListener('click', function() {
+        // Ripple effect
+        const ripple = document.createElement('span');
+        ripple.classList.add('toggle-ripple');
+        this.appendChild(ripple);
+        
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    });
+});
+
+
 // Dark Mode Toggle Functionality
 const themeToggle = document.getElementById('themeToggle');
 const icon = themeToggle.querySelector('i');
