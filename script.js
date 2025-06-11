@@ -74,6 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
             maximumFractionDigits: 2
         });
         
-        resultAmount.textContent = formatter.format(value);
+        resultAmount.textContent = 'LKR ' + value.toLocaleString('en-LK', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
     }
 });
