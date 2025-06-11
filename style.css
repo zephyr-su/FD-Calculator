@@ -184,6 +184,27 @@ input[type="radio"]:checked + .toggle-option {
 .radio-text {
     white-space: nowrap;
 }
+/* Ripple animation */
+.toggle-ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    animation: ripple 0.6s ease-out;
+    z-index: 1;
+}
+
+@keyframes ripple {
+    to {
+        width: 150%;
+        height: 150%;
+        opacity: 0;
+    }
+}
 
 .button-group {
     display: flex;
