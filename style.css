@@ -1,5 +1,5 @@
 :root {
-    --primary-color: #0056b3; /* Sri Lankan blue */
+    --primary-color: #0056b3;
     --primary-hover: #003d7a;
     --secondary-color: #f1f1f1;
     --secondary-hover: #e0e0e0;
@@ -78,11 +78,14 @@ input:focus {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-.toggle-group span {
+.toggle-label {
     font-weight: 500;
     color: var(--light-text);
+    white-space: nowrap;
 }
 
 .toggle-options {
@@ -90,31 +93,26 @@ input:focus {
     gap: 10px;
 }
 
-.toggle-options label {
+.radio-option {
     display: flex;
     align-items: center;
     padding: 8px 12px;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s;
-    margin-bottom: 0;
 }
 
-.toggle-options label:hover {
+.radio-option:hover {
     background-color: var(--toggle-active);
 }
 
-.toggle-options input[type="radio"] {
-    display: none;
+.radio-option input[type="radio"] {
+    margin-right: 8px;
+    width: auto;
 }
 
-.toggle-options input[type="radio"]:checked + span {
-    color: var(--primary-color);
-    font-weight: 500;
-}
-
-.toggle-options span {
-    margin-left: 5px;
+.radio-text {
+    white-space: nowrap;
 }
 
 .button-group {
@@ -207,7 +205,6 @@ button {
     .toggle-group {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
     }
     
     .button-group {
