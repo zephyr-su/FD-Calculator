@@ -30,19 +30,18 @@
             <input type="number" id="depositPeriod" placeholder="Enter months" min="1">
         </div>
         
-        <div class="toggle-group">
-            <span class="toggle-label">Interest Payment:</span>
-            <div class="toggle-options">
-                <label class="radio-option">
-                    <input type="radio" name="interestType" value="maturity" checked>
-                    <span class="radio-text">At Maturity</span>
-                </label>
-                <label class="radio-option">
-                    <input type="radio" name="interestType" value="monthly">
-                    <span class="radio-text">Monthly</span>
-                </label>
-            </div>
-        </div>
+        <div class="interest-toggle-container">
+    <div class="toggle-label">Interest Payment:</div>
+    <div class="toggle-switch">
+        <input type="radio" id="maturityToggle" name="interestType" value="maturity" checked>
+        <label for="maturityToggle" class="toggle-option">At Maturity</label>
+        
+        <input type="radio" id="monthlyToggle" name="interestType" value="monthly">
+        <label for="monthlyToggle" class="toggle-option">Monthly</label>
+        
+        <span class="toggle-slider"></span>
+    </div>
+</div>
         
         <div class="button-group">
             <button id="clearBtn" type="button">CLEAR</button>
