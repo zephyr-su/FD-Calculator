@@ -1,6 +1,6 @@
 :root {
-    --primary-color: #3498db;
-    --primary-hover: #2980b9;
+    --primary-color: #0056b3; /* Sri Lankan blue */
+    --primary-hover: #003d7a;
     --secondary-color: #f1f1f1;
     --secondary-hover: #e0e0e0;
     --text-color: #333;
@@ -10,6 +10,7 @@
     --background: #f5f7fa;
     --white: #ffffff;
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    --toggle-active: #e6f0fa;
 }
 
 * {
@@ -37,15 +38,10 @@ body {
     padding: 30px;
     width: 100%;
     max-width: 450px;
-    transition: transform 0.3s ease;
-}
-
-.calculator-container:hover {
-    transform: translateY(-5px);
 }
 
 h1 {
-    color: #2c3e50;
+    color: #0056b3;
     text-align: center;
     margin-bottom: 25px;
     font-weight: 500;
@@ -74,7 +70,51 @@ input {
 input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
+}
+
+.toggle-group {
+    margin: 25px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toggle-group span {
+    font-weight: 500;
+    color: var(--light-text);
+}
+
+.toggle-options {
+    display: flex;
+    gap: 10px;
+}
+
+.toggle-options label {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 0;
+}
+
+.toggle-options label:hover {
+    background-color: var(--toggle-active);
+}
+
+.toggle-options input[type="radio"] {
+    display: none;
+}
+
+.toggle-options input[type="radio"]:checked + span {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.toggle-options span {
+    margin-left: 5px;
 }
 
 .button-group {
@@ -117,7 +157,7 @@ button {
     margin-top: 30px;
     text-align: center;
     padding: 15px;
-    background-color: rgba(52, 152, 219, 0.05);
+    background-color: rgba(0, 86, 179, 0.05);
     border-radius: 8px;
 }
 
@@ -133,10 +173,23 @@ button {
 }
 
 #resultAmount {
-    color: #2c3e50;
+    color: #0056b3;
     font-size: 28px;
     margin: 10px 0;
     font-weight: 500;
+}
+
+.monthly-result {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: rgba(0, 86, 179, 0.08);
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.monthly-result p {
+    margin: 5px 0;
+    color: var(--text-color);
 }
 
 .disclaimer {
@@ -146,10 +199,15 @@ button {
     font-style: italic;
 }
 
-/* Responsive adjustments */
 @media (max-width: 480px) {
     .calculator-container {
         padding: 20px;
+    }
+    
+    .toggle-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
     }
     
     .button-group {
