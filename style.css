@@ -211,3 +211,64 @@ button {
         flex-direction: column;
     }
 }
+
+/* Dark Mode Variables */
+:root {
+    --card-bg: #ffffff;
+}
+
+[data-theme="dark"] {
+    --primary-color: #4a9cff;
+    --primary-hover: #3a7bc8;
+    --secondary-color: #444;
+    --secondary-hover: #555;
+    --text-color: #f0f0f0;
+    --light-text: #bbb;
+    --border-color: #555;
+    --divider-color: #444;
+    --background: #1a1a1a;
+    --white: #222;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --toggle-active: #2a3a4a;
+    --card-bg: #222;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background: var(--primary-hover);
+    transform: scale(1.1);
+}
+
+/* Dark Mode Specific Styles */
+[data-theme="dark"] .calculator-container {
+    background-color: var(--card-bg);
+}
+
+[data-theme="dark"] input {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .result-section {
+    background-color: rgba(74, 156, 255, 0.1);
+}
