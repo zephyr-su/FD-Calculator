@@ -9,10 +9,10 @@
 </head>
 <body>
     <div class="calculator-container">
-        <h1>Fixed Deposit Calculator</h1>
+        <h1>Sri Lanka Fixed Deposit Calculator</h1>
         
         <div class="input-group">
-            <label for="depositAmount">Initial Deposit (LKR)</label>
+            <label for="depositAmount">Initial Deposit (Rs.)</label>
             <input type="number" id="depositAmount" placeholder="Enter amount" min="1">
         </div>
         
@@ -26,16 +26,31 @@
             <input type="number" id="depositPeriod" placeholder="Enter months" min="1">
         </div>
         
+        <div class="toggle-group">
+            <span>Interest Payment:</span>
+            <div class="toggle-options">
+                <label>
+                    <input type="radio" name="interestType" value="maturity" checked>
+                    <span>At Maturity</span>
+                </label>
+                <label>
+                    <input type="radio" name="interestType" value="monthly">
+                    <span>Monthly</span>
+                </label>
+            </div>
+        </div>
+        
         <div class="button-group">
             <button id="clearBtn" type="button">CLEAR</button>
             <button id="calculateBtn" type="button">CALCULATE</button>
         </div>
         
         <div class="result-section">
-            <p>Maturity value at the end of the period</p>
+            <p id="resultLabel">Maturity value at the end of the period</p>
             <div class="divider"></div>
-            <h2 id="resultAmount">LKR 0</h2>
-            <p class="disclaimer">*This amount is subject to the prevailing withholding tax structure*</p>
+            <h2 id="resultAmount">Rs. 0</h2>
+            <div id="monthlyResult" class="monthly-result"></div>
+            <p class="disclaimer">*This amount is subject to the prevailing Sri Lankan withholding tax structure*</p>
         </div>
     </div>
 
