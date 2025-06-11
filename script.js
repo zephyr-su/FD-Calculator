@@ -1,3 +1,56 @@
+// Step Navigation System
+const steps = document.querySelectorAll('.input-step');
+const progressSteps = document.querySelectorAll('.progress-step');
+let currentStep = 0;
+
+function showStep(stepIndex) {
+    // Hide all steps
+    steps.forEach(step => step.classList.remove('active'));
+    progressSteps.forEach(step => step.classList.remove('active'));
+    
+    // Show current step
+    steps[stepIndex].classList.add('active');
+    progressSteps[stepIndex].classList.add('active');
+}
+
+// Next button functionality
+document.querySelectorAll('.next-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        if (validateStep(currentStep)) {
+            currentStep++;
+            showStep(currentStep);
+        }
+    });
+});
+
+// Back button functionality
+document.querySelectorAll('.back-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        currentStep--;
+        showStep(currentStep);
+    });
+});
+
+// Reset functionality
+document.getElementById('resetBtn').addEventListener('click', () => {
+    currentStep = 0;
+    showStep(currentStep);
+});
+
+function validateStep(stepIndex) {
+    const currentInput = steps[stepIndex].querySelector('input');
+    if (currentInput && !currentInput.value) {
+        currentInput.style.borderColor = 'red';
+        setTimeout(() => currentInput.style.borderColor = '', 2000);
+        return false;
+    }
+    return true;
+}
+
+// Initialize first step
+showStep(0);
+
+
 // Dark Mode Toggle Functionality
 const themeToggle = document.getElementById('themeToggle');
 const icon = themeToggle.querySelector('i');
