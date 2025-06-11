@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // DOM Elements
     const depositAmount = document.getElementById('depositAmount');
     const interestRate = document.getElementById('interestRate');
     const depositPeriod = document.getElementById('depositPeriod');
@@ -11,38 +12,68 @@ document.addEventListener('DOMContentLoaded', function() {
         depositAmount.value = '';
         interestRate.value = '';
         depositPeriod.value = '';
-        resultAmount.textContent = 'Rs. 0';
+        resultAmount.textContent = '₹ 0';
+        depositAmount.focus();
     });
 
     // Calculate FD maturity amount
-    calculateBtn.addEventListener('click', function() {
+    calculateBtn.addEventListener('click', calculateMaturityValue);
+
+    // Allow calculation on Enter key
+    [depositAmount, interestRate, depositPeriod].forEach(input => {
+        input.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculateMaturityValue();
+            }
+        });
+    });
+
+    function calculateMaturityValue() {
+        // Get and validate inputs
         const principal = parseFloat(depositAmount.value);
         const rate = parseFloat(interestRate.value);
         const months = parseFloat(depositPeriod.value);
         
-        if (isNaN(principal) {
-            alert('Please enter a valid deposit amount');
+        // Validation
+        if (isNaN(principal) || principal <= 0) {
+            showError('Please enter a valid deposit amount (minimum ₹1)');
             return;
         }
         
-        if (isNaN(rate)) {
-            alert('Please enter a valid interest rate');
+        if (isNaN(rate) || rate <= 0) {
+            showError('Please enter a valid interest rate (minimum 0.01%)');
             return;
         }
         
-        if (isNaN(months)) {
-            alert('Please enter a valid deposit period');
+        if (isNaN(months) || months <= 0) {
+            showError('Please enter a valid deposit period (minimum 1 month)');
             return;
         }
-        
+
         // Convert months to years
         const years = months / 12;
         
-        // Calculate simple interest (you can change to compound if needed)
-        const interest = principal * rate * years / 100;
-        const maturityValue = principal + interest;
+        // Calculate compound interest
+        const maturityValue = principal * Math.pow(1 + (rate / 100), years);
         
-        // Format the number with commas
-        resultAmount.textContent = 'Rs. ' + maturityValue.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    });
+        // Format and display result
+        displayResult(maturityValue);
+    }
+
+    function showError(message) {
+        alert(message);
+        resultAmount.textContent = '₹ 0';
+    }
+
+    function displayResult(value) {
+        // Format with Indian number system
+        const formatter = new Intl.NumberFormat('en-IN', {
+            style: 'currency',
+            currency: 'INR',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+        
+        resultAmount.textContent = formatter.format(value);
+    }
 });
