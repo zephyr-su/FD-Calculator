@@ -1,3 +1,113 @@
+/* Progress Bar */
+.progress-bar {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto 25px;
+    max-width: 300px;
+    position: relative;
+}
+
+.progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #ddd;
+    z-index: -1;
+}
+
+.progress-step {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    font-weight: bold;
+    border: 2px solid white;
+}
+
+.progress-step.active {
+    background: #3498db;
+    color: white;
+}
+
+/* Step Transitions */
+.input-step {
+    display: none;
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+.input-step.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Navigation Buttons */
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    gap: 10px;
+}
+
+.next-btn, .back-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.next-btn {
+    background-color: #3498db;
+    color: white;
+    flex: 1;
+}
+
+.next-btn:hover {
+    background-color: #2980b9;
+    transform: translateX(3px);
+}
+
+.back-btn {
+    background-color: #f1f1f1;
+    color: #333;
+    flex: 1;
+}
+
+.back-btn:hover {
+    background-color: #e0e0e0;
+    transform: translateX(-3px);
+}
+
+/* Reset Button */
+.reset-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.reset-btn:hover {
+    background-color: #27ae60;
+}
+
+
 :root {
     --primary-color: #0056b3;
     --primary-hover: #003d7a;
