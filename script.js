@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         depositAmount.value = '';
         interestRate.value = '';
         depositPeriod.value = '';
-        resultAmount.textContent = '₹ 0';
+        resultAmount.textContent = 'LKR 0';
         depositAmount.focus();
     });
 
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Validation
         if (isNaN(principal) || principal <= 0) {
-            showError('Please enter a valid deposit amount (minimum ₹1)');
+            showError('Please enter a valid deposit amount (minimum 1 LKR)');
             return;
         }
         
@@ -62,14 +62,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showError(message) {
         alert(message);
-        resultAmount.textContent = '₹ 0';
+        resultAmount.textContent = 'LKR 0';
     }
 
     function displayResult(value) {
         // Format with Indian number system
-        const formatter = new Intl.NumberFormat('en-IN', {
+        const formatter = new Intl.NumberFormat('en-LK', {
             style: 'currency',
-            currency: 'INR',
+            currency: 'LKR',
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         });
