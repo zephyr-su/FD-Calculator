@@ -42,17 +42,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const interestType = document.querySelector('input[name="interestType"]:checked').value;
 
         // Validate inputs
-        if (isNaN(principal) {
+        if (isNaN(principal) || principal <= 0) {
             showError('Please enter a valid deposit amount (minimum Rs. 1)');
             return;
         }
         
-        if (isNaN(rate)) {
+        if (isNaN(rate) || rate <= 0) {
             showError('Please enter a valid interest rate (minimum 0.01%)');
             return;
         }
         
-        if (isNaN(months)) {
+        if (isNaN(months) || months <= 0) {
             showError('Please enter a valid deposit period (minimum 1 month)');
             return;
         }
