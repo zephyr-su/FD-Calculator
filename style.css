@@ -93,8 +93,8 @@ input:focus {
 .toggle-options label {
     position: relative;
     z-index: 2;
-    padding: 5px 10px;
-    margin: 0;
+    padding: 5px 5px;
+    margin: 2;
     text-align: center;
     cursor: pointer;
     transition: color 0.3s ease;
