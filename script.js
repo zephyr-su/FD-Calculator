@@ -1,26 +1,9 @@
-
-// Add click animation
-document.querySelectorAll('.toggle-option').forEach(option => {
-    option.addEventListener('click', function() {
-        // Ripple effect
-        const ripple = document.createElement('span');
-        ripple.classList.add('toggle-ripple');
-        this.appendChild(ripple);
-        
-        setTimeout(() => {
-            ripple.remove();
-        }, 600);
-    });
-});
-
-
 // Dark Mode Toggle Functionality
 const themeToggle = document.getElementById('themeToggle');
 const icon = themeToggle.querySelector('i');
 
-// Check for saved theme preference
 const savedTheme = localStorage.getItem('theme') || 
-                 (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 document.documentElement.setAttribute('data-theme', savedTheme);
 if (savedTheme === 'dark') {
     icon.classList.replace('fa-moon', 'fa-sun');
@@ -39,10 +22,8 @@ themeToggle.addEventListener('click', () => {
     }
 });
 
-// Your existing calculator code continues here...
-
+// Calculator Functionality
 document.addEventListener('DOMContentLoaded', function() {
-    // DOM Elements
     const depositAmount = document.getElementById('depositAmount');
     const interestRate = document.getElementById('interestRate');
     const depositPeriod = document.getElementById('depositPeriod');
@@ -51,40 +32,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const resultAmount = document.getElementById('resultAmount');
     const resultLabel = document.getElementById('resultLabel');
     const monthlyResult = document.getElementById('monthlyResult');
-    const interestTypeRadios = document.querySelectorAll('input[name="interestType"]');
 
-    // Clear all inputs
     clearBtn.addEventListener('click', function() {
         depositAmount.value = '';
         interestRate.value = '';
         depositPeriod.value = '';
         resultAmount.textContent = 'Rs. 0';
         monthlyResult.innerHTML = '';
-        resultLabel.textContent = 'Maturity value at the end of the period';
         document.querySelector('input[name="interestType"][value="maturity"]').checked = true;
-        depositAmount.focus();
     });
 
-    // Calculate when button clicked
     calculateBtn.addEventListener('click', calculateResults);
 
-    // Calculate when Enter pressed
-    [depositAmount, interestRate, depositPeriod].forEach(input => {
-        input.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                calculateResults();
-            }
-        });
-    });
-
     function calculateResults() {
-        // Get values
         const principal = parseFloat(depositAmount.value);
         const rate = parseFloat(interestRate.value);
         const months = parseFloat(depositPeriod.value);
         const interestType = document.querySelector('input[name="interestType"]:checked').value;
 
-        // Validate inputs
         if (isNaN(principal) || principal <= 0) {
             showError('Please enter a valid deposit amount (minimum Rs. 1)');
             return;
@@ -100,38 +65,28 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Calculate based on interest type
         if (interestType === 'monthly') {
-            calculateMonthlyInterest(principal, rate, months);
+            const monthlyRate = rate / 12;
+            const monthlyInterest = principal * (monthlyRate / 100);
+            const totalInterest = monthlyInterest * months;
+            const totalValue = principal + totalInterest;
+            
+            resultLabel.textContent = 'Total value with monthly interest';
+            displayResult(totalValue);
+            
+            monthlyResult.innerHTML = `
+                <p><strong>Monthly Interest:</strong> Rs. ${monthlyInterest.toFixed(2)}</p>
+                <p><strong>Total Interest:</strong> Rs. ${totalInterest.toFixed(2)}</p>
+                <p><strong>Principal Amount:</strong> Rs. ${principal.toFixed(2)}</p>
+            `;
         } else {
-            calculateMaturityValue(principal, rate, months);
+            const years = months / 12;
+            const maturityValue = principal * Math.pow(1 + (rate / 100), years);
+            
+            resultLabel.textContent = 'Maturity value at the end of the period';
+            displayResult(maturityValue);
+            monthlyResult.innerHTML = '';
         }
-    }
-
-    function calculateMaturityValue(principal, rate, months) {
-        const years = months / 12;
-        const maturityValue = principal * Math.pow(1 + (rate / 100), years);
-        
-        resultLabel.textContent = 'Maturity value at the end of the period';
-        displayResult(maturityValue);
-        monthlyResult.innerHTML = '';
-    }
-
-    function calculateMonthlyInterest(principal, rate, months) {
-        const monthlyRate = rate / 12;
-        const monthlyInterest = principal * (monthlyRate / 100);
-        const totalInterest = monthlyInterest * months;
-        const totalValue = principal + totalInterest;
-        
-        resultLabel.textContent = 'Total value with monthly interest';
-        displayResult(totalValue);
-        
-        // Show monthly breakdown
-        monthlyResult.innerHTML = `
-            <p><strong>Monthly Interest:</strong> Rs. ${monthlyInterest.toFixed(2)}</p>
-            <p><strong>Total Interest:</strong> Rs. ${totalInterest.toFixed(2)}</p>
-            <p><strong>Principal Amount:</strong> Rs. ${principal.toFixed(2)}</p>
-        `;
     }
 
     function displayResult(value) {
@@ -146,17 +101,4 @@ document.addEventListener('DOMContentLoaded', function() {
         resultAmount.textContent = 'Rs. 0';
         monthlyResult.innerHTML = '';
     }
-});
-
-// Add this to script.js for mouse-following flares
-document.addEventListener('mousemove', (e) => {
-  const flare = document.createElement('div');
-  flare.className = 'flare mouse-flare';
-  flare.style.left = `${e.clientX}px`;
-  flare.style.top = `${e.clientY}px`;
-  document.querySelector('.floating-flares').appendChild(flare);
-  
-  setTimeout(() => {
-    flare.remove();
-  }, 2000);
 });
