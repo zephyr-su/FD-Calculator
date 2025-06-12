@@ -161,18 +161,18 @@ input:focus {
 .toggle-slider {
     position: absolute;
     top: 3px;
-    left: 5px;
-    width: calc(50% - 10px);
-    height: calc(100% - 6px);
+    left: 3px;
+    width: calc(50% - 6px); /* 3px padding on both sides */
+    height: calc(100% - 6px); /* 3px padding top and bottom */
     background: var(--primary-color);
     border-radius: 30px;
-    margin: 0 2px; /* Add small margin */
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15); /* adds soft outline effect */
 }
 [data-theme="dark"] .toggle-slider {
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1); /* Dark mode outline */
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3); 
 }
+
 
 #monthlyToggle:checked ~ .toggle-slider {
     transform: translateX(100%);
