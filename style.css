@@ -122,7 +122,6 @@ input:focus {
     position: relative;
     z-index: 2;
     padding: 8px 15px;
-    padding-bottom: 4px;
     margin: 0;
     text-align: center;
     cursor: pointer;
@@ -136,6 +135,12 @@ input:focus {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.toggle-label {
+    position: relative;
+    top: 2px;
+    padding-bottom: 0;
 }
 
 [data-theme="dark"] .toggle-options label {
