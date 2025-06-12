@@ -97,7 +97,7 @@ input:focus {
 
 .toggle-group {
     display: flex;
-    align-items: center:
+    align-items: center;
     margin: 25px 0;
     gap: 10px;
     justify-content: flex-start;
@@ -140,7 +140,11 @@ input:focus {
 .toggle-label {
   display: inline-flex;
   align-items: center;
-  height: 34px
+  height: 34px;
+  position: relative;
+  top: 1px; /* Fine-tune vertical position */
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 [data-theme="dark"] .toggle-options label {
