@@ -138,10 +138,9 @@ input:focus {
 }
 
 .toggle-label {
-  display: flex;
-  align-items: center;  /* Vertically centers text with buttons */
-  height: 40px;        /* Match your toggle button height */
-  padding-bottom: 2px;
+  display: inline-flex;
+  align-items: center;
+  height: 34px
 }
 
 [data-theme="dark"] .toggle-options label {
