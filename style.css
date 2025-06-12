@@ -97,15 +97,17 @@ input:focus {
 
 .toggle-group {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: center:
     margin: 25px 0;
-    gap: 15px;
+    gap: 10px;
+    justify-content: flex-start;
 }
 
 .toggle-options {
     display: flex;
     position: relative;
+    margin-left: 0; /* Remove any left margin */
+    margin-right: auto;
     background: #f0f0f0;
     border-radius: 30px;
     padding: 3px;
@@ -343,4 +345,16 @@ button {
     .button-group {
         flex-direction: column;
     }
+}
+
+.mouse-flare {
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(52, 152, 219, 0.6) 0%, rgba(52, 152, 219, 0) 70%);
+    animation: fadeOut 2s forwards;
+    position: absolute;
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; transform: scale(1.5); }
 }
