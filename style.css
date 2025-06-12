@@ -112,6 +112,7 @@ input:focus {
     border-radius: 30px;
     padding: 3px;
     height: 40px;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
 [data-theme="dark"] .toggle-options {
@@ -159,13 +160,17 @@ input:focus {
 .toggle-slider {
     position: absolute;
     top: 3px;
-    left: 3px;
-    width: calc(50% - 6px);
+    left: 5px;
+    width: calc(50% - 10px);
     height: calc(100% - 6px);
     background: var(--primary-color);
     border-radius: 30px;
+    margin: 0 2px; /* Add small margin */
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+}
+[data-theme="dark"] .toggle-slider {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1); /* Dark mode outline */
 }
 
 #monthlyToggle:checked ~ .toggle-slider {
