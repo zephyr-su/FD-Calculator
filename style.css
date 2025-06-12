@@ -106,15 +106,13 @@ input:focus {
 .toggle-options {
     display: flex;
     position: relative;
-    margin-left: 0; /* Remove any left margin */
-    margin-right: auto;
     background: #f0f0f0;
     border-radius: 30px;
-    padding: 3px;
+    padding: 4px; /* slightly increased for better outline spacing */
     height: 40px;
-    width: 160px;
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+    gap: 0; /* ensure no extra space between labels */
 }
+
 
 [data-theme="dark"] .toggle-options {
     background: #333;
@@ -160,18 +158,24 @@ input:focus {
 
 .toggle-slider {
     position: absolute;
-    top: 3px;
-    left: 3px;
-    width: calc(50% - 6px); /* 3px padding on both sides */
-    height: calc(100% - 6px); /* 3px padding top and bottom */
+    top: 4px;
+    left: 4px;
+    width: calc(50% - 8px); /* account for both left/right padding (4px each) */
+    height: calc(100% - 8px); /* top/bottom padding */
     background: var(--primary-color);
     border-radius: 30px;
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15); /* adds soft outline effect */
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2); /* subtle outline effect */
 }
+
+[data-theme="dark"] .toggle-options {
+    background: #333;
+}
+
 [data-theme="dark"] .toggle-slider {
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3); 
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
 }
+
 
 
 #monthlyToggle:checked ~ .toggle-slider {
