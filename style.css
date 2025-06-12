@@ -76,6 +76,8 @@ input:focus {
 /* Modern Toggle Switch */
 .toggle-group {
     display: flex;
+    justify-content: flex-start; 
+    margin-left: 10px; 
     align-items: center;
     gap: 15px;
     margin: 25px 0;
@@ -83,6 +85,8 @@ input:focus {
 
 .toggle-options {
     display: flex;
+    margin-right: auto;
+    margin-left: 0;
     position: relative;
     background: #f0f0f0;
     border-radius: 30px;
