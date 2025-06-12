@@ -147,3 +147,16 @@ document.addEventListener('DOMContentLoaded', function() {
         monthlyResult.innerHTML = '';
     }
 });
+
+// Add this to script.js for mouse-following flares
+document.addEventListener('mousemove', (e) => {
+  const flare = document.createElement('div');
+  flare.className = 'flare mouse-flare';
+  flare.style.left = `${e.clientX}px`;
+  flare.style.top = `${e.clientY}px`;
+  document.querySelector('.floating-flares').appendChild(flare);
+  
+  setTimeout(() => {
+    flare.remove();
+  }, 2000);
+});
