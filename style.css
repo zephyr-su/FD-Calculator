@@ -100,6 +100,8 @@ input:focus {
     transition: color 0.3s ease;
     font-weight: 500;
     color: #555;
+    align-items: flex-end; 
+    justify-content: center; 
     border-radius: 30px;
     flex: 1;
 }
